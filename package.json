@@ -1,0 +1,21 @@
+{
+  "name": "organizador-estudos",
+  "version": "1.0.0",
+  "description": "Organizador de estudos focado para ajudar na rotina",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest",
+    "lint": "eslint src/** tests/**"
+  },
+  "keywords": [],
+  "author": "Seu Nome",
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "eslint": "^10.2.0",
+    "jest": "^30.3.0"
+  }
+}

@@ -1,0 +1,29 @@
+name: CI de Validacao
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Fazer checkout do codigo
+      uses: actions/checkout@v4
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Instalar dependencias
+      run: npm install
+
+    - name: Executar Linting
+      run: npm run lint
+
+    - name: Executar Testes Automatizados
+      run: npm run test
