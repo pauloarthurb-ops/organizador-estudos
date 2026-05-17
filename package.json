@@ -15,7 +15,7 @@
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
-    "eslint": "^10.2.0",
+    "eslint": "^10.4.0",
     "jest": "^30.3.0"
   }
 }
