@@ -1,6 +1,28 @@
 const readline = require('readline-sync');
 const { adicionarTarefa, listarTarefas, concluirTarefa } = require('./gerenciador');
 
+// =========================================================================
+// NOVO: Função que consome a API pública para buscar a dica de motivação
+// =========================================================================
+async function obterDicaDoDia() {
+    try {
+        const resposta = await fetch('https://api.adviceslip.com/advice');
+        const dados = await resposta.json();
+        const dica = dados.slip.advice;
+        
+        console.log("\n==================================================");
+        console.log("💡 DICA DO DIA PARA OS SEUS ESTUDOS (API):");
+        console.log(`> ${dica}`);
+        console.log("==================================================");
+    } catch (erro) {
+        // Frase de segurança caso o computador esteja sem internet
+        console.log("\n💡 Dica do dia: Mantenha o foco e organize o seu tempo!\n");
+    }
+}
+
+// =========================================================================
+// SEU CÓDIGO ANTIGO: Mantido exatamente igual, sem alterações na lógica
+// =========================================================================
 function menu() {
     console.log("\n=== 🧠 Organizador de Estudos Focado ===");
     console.log("1. Adicionar nova microtarefa de estudo");
@@ -44,4 +66,12 @@ function menu() {
     menu(); // Chama o menu novamente para criar um loop
 }
 
-menu();
+// =========================================================================
+// NOVO: Fluxo de inicialização que aguarda a API antes de abrir o menu
+// =========================================================================
+async function iniciar() {
+    await obterDicaDoDia(); // Busca a dica na internet primeiro
+    menu();                 // Abre o seu menu logo em seguida
+}
+
+iniciar(); // Executa o programa completo
